@@ -26,7 +26,7 @@ int main(){
 
     // Customer details
     string customerName{};
-    string userChoice{};
+    int movieChoice{};
     int customerAge{};
 
     // Customer purchases
@@ -37,7 +37,7 @@ int main(){
 
     // Taking user details
     cout << "Enter your name kindly: ";
-    cin >> customerName;
+    getline(cin, customerName);
 
     cout << "Enter your age: ";
     cin >> customerAge;
@@ -55,46 +55,67 @@ int main(){
 
     cout << "\n";
     cout << "Which movie do you want to watch?: ";
-    cin >> userChoice;
+    cin >> movieChoice;
 
     cout << "\n";
+
+    // Movie names
+    string movieName{};
+
+    if(movieChoice == 1){
+        movieName = "Interstellar";
+    }
+
+    else if(movieChoice == 2){
+        movieName = "Spider-Man";
+    }
+
+    else if(movieChoice == 3){
+        movieName = "The Dark Knight";
+    }
+
+    else{
+        cout << "Invalid movie choice!\n";
+    }
 
     // Checking age requirements
     bool canWatch{false};
     string showTime{};
 
     if (isAdult and
-        (userChoice == "Interstellar" or
-         userChoice == "Spider-Man" or
-         userChoice == "The Dark Knight")){
+        (movieChoice == 1 or
+         movieChoice == 2 or
+         movieChoice == 3)){
 
         showTime = adultTime;
         canWatch = true;
     }
 
     else if (isTeen and
-             (userChoice == "Interstellar" or
-              userChoice == "Spider-Man")){
+             (movieChoice == 1 or
+              movieChoice == 2)){
 
         showTime = teenTime;
         canWatch = true;
     }
 
-    else if (isKid and userChoice == "Interstellar"){
+    else if (isKid and movieChoice == 1){
 
         showTime = kidTime;
         canWatch = true;
     }
 
-    else{
+    else if(movieChoice >= 1 and movieChoice <= 3){
+
         cout << "You do not match the requirements to watch this film!\n";
     }
 
     // Purchase section
     if(canWatch){
 
-        cout << "You can watch this movie at "
-             << showTime << ". Enjoy your movie!\n";
+        cout << "You can watch " << movieName
+             << " at " << showTime
+             << ". Enjoy your movie!\n";
 
         cout << "\nHow many tickets do you want to purchase?: "
              << "\nYou get a 10% discount on purchase of 3+ tickets!!: ";
@@ -154,7 +175,7 @@ int main(){
 
         cout << "Customer Name : " << customerName << '\n';
         cout << "Customer Age  : " << customerAge << '\n';
-        cout << "Movie         : " << userChoice << '\n';
+        cout << "Movie         : " << movieName << '\n';
         cout << "Show Time     : " << showTime << '\n';
 
         cout << "\n----------------------------------------\n";
